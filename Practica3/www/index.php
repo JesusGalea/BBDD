@@ -1,30 +1,25 @@
+<!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="stylesheet.css">
 	<title></title>
 </head>
 <body>
-<div class="banner"> </div>
-<div class="menu"> 
-<div class="iz">
+<?php
+$enlace = mysqli_connect( "db", "root" , "root", "dbname");
+$Consulta = "SELECT * FROM Alumno";
 
-</div>
+$resultado = mysqli_query($enlace, $Consulta);
 
-
-
-<div class="der">
-	mi polla derecha
-
-</div>
-<div class="barra">
-	mi polla en barra
-
-</div>
-
-<div class="content"> mi polla contenida</div>
-
-</div>
-
+while ($Fila = mysqli_fetch_array($resultado)){	
+?>
+<form action="hola.php" method="GET">
+ <input type="hidden" value="<?php echo $Fila['ID']; ?>" name="id">
+ <input type="submit" value="<?php echo $Fila['Nombre'].' '.$Fila['Apellido1'].' '.$Fila['Apellido2']; ?>">
+</form>
+<?php
+}
+mysqli_close($enlace);
+?>
 
 </body>
 </html>
