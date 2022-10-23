@@ -26,6 +26,15 @@ services:
             - persistent:/var/lib/mysql
         networks:
             - default
+    postgres:
+        image: 'postgres:latest'
+        restart: always
+        volumes:
+            - './postgres_data:/var/lib/postgresql/data'
+        environment:
+            - POSTGRES_PASSWORD=secure_pass_here
+        ports:
+            - '5432:5432'
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
         links: 
